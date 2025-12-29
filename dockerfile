@@ -19,7 +19,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 #luego limpio la cache de apt para reducir el tamaño de la imagen
 #especifico la version de curl para mayor seguridad
 #limpio los archivos temporales de apt
-RUN  apt-get update && apt-get install -y  --no-install-recommends curl  \
+#buena practica definir la version de los paquetes
+#en esta caso se usa la version 7.88.1-10+deb12u14 de curl es la ultima version estable
+#Se soluciono problemas de seguridad relacionados con versiones antiguas de curl
+#Problema corrigido con la versiones no especifica para la 
+#para la version de python:3.11-slim-bookworm
+RUN  apt-get update && apt-get install -y  --no-install-recommends curl=7.88.1-10+deb12u14  \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 # 8. Copiar el resto de tu código (como root)
@@ -31,8 +36,13 @@ RUN groupadd -r django_group \
 USER django_user
 EXPOSE 8000
 #Defino mi healteach
+#al definir una ruta de healthcheck en mi aplicacion
+#me aseguro que el contenedor este funcionando correctamente
+#y pueda responder a las solicitudes
+#se debe asegurar que la ruta /health este implementada en la aplicacion django
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 \ 
-CMD curl -f http://localhost:8000/health 
+CMD curl -f http://localhost:8000/health/ 
+
 # 11. Definir el punto de entrada
 #en produccion se recomienda usar gunicorn o daphne
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
