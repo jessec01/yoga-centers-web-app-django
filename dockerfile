@@ -8,7 +8,19 @@ LABEL maintenance="Jessec Zuleta, Daniel N"
 # 3. Directorio de trabajo
 #se incluira los PYTHONDONTWRITEBYTECODE y PYTHONUNBUFFERED
 #despues de testear la aplicacion
+
 WORKDIR /app
+#convierte  las variables de entorno para python
+#en configuraciones optimas para aplicaciones web
+#rpython no escribira archivos .pyc
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+#definir las variables de entorno para el usuario no root
+ARG UID=1000
+ARG GID=1000
+# 6. Crear el usuario no-root (como root)
+RUN groupadd -g $GID django_group  && \
+ useradd -l -u $UID -g django_group django_user 
 #4 copiamos el archivo de requerimientos
 COPY requirements.txt .
 #5 instalar dependencias del sistema (¡como root!)
@@ -29,10 +41,9 @@ RUN  apt-get update && apt-get install -y  --no-install-recommends curl=7.88.1-1
  && rm -rf /var/lib/apt/lists/*
 # 8. Copiar el resto de tu código (como root)
 COPY . .
-# 6. Crear el usuario no-root (como root)
-RUN groupadd -r django_group \ 
-&& useradd -r -g django_group django_user \ 
-&& chown -R django_user:django_group /app
+
+# Define los permiso la sincronizacion de archivos del contenedor al host
+RUN chown -R django_user:django_group /app
 USER django_user
 EXPOSE 8000
 #Defino mi healteach
