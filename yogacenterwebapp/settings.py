@@ -49,6 +49,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'phonenumber_field',
     'userYC',
+    'yogui',
+    'instructor',
+    'center_administrator',
+    'super_admin',
 ]
 #modelo de usuario personalizado
 AUTH_USER_MODEL = 'userYC.UserYogaCenter'

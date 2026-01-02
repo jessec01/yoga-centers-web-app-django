@@ -9,5 +9,7 @@ class UserYogaCenter(AbstractUser):
     datatime_created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "UserYC"
-        verbose_name_plural = "UsersYC"
+        db_table = "user_yoga_center"
+    
+    def __str__(self):
+        return self.username

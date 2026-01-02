@@ -39,13 +39,17 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN  apt-get update && apt-get install -y  --no-install-recommends curl=7.88.1-10+deb12u14  \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+
+
+
+RUN chown -R django_user:django_group /app
+USER django_user
+EXPOSE 8000
 # 8. Copiar el resto de tu código (como root)
 COPY . .
 
 # Define los permiso la sincronizacion de archivos del contenedor al host
-RUN chown -R django_user:django_group /app
-USER django_user
-EXPOSE 8000
+
 #Defino mi healteach
 #al definir una ruta de healthcheck en mi aplicacion
 #me aseguro que el contenedor este funcionando correctamente
