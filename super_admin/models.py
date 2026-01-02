@@ -5,6 +5,16 @@ class SuperAdminProfile(models.Model):
     user = models.OneToOneField(UserYogaCenter, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     is_super_admin = models.BooleanField(default=True)
+    def summary_super_admin(self):
+        return {
+            "user_id": self.user.id,
+            "first_name": self.user.first_name,
+            "last_name": self.user.last_name,   
+            "email": self.user.email,
+            "phone_number": self.user.phone,
+            "is_active": self.is_active,
+            "is_super_admin": self.is_super_admin,
+        }
     class Meta:
         db_table = "super_admin"
         

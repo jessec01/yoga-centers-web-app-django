@@ -9,6 +9,19 @@ class InstructorProfile(models.Model):
     is_active = models.BooleanField(default=True)
     qualification = models.FloatField(default=0.0)
     is_instructor = models.BooleanField(default=True)
+    def summary_instructor(self):
+        return {
+            "user_id": self.user.id,
+            "first_name": self.user.first_name,
+            "last_name": self.user.last_name,   
+            "email": self.user.email,
+            "phone_number": self.user.phone,
+            "description_personal": self.description_personal,
+            "specialty": self.specialty,
+            "is_active": self.is_active,
+            "qualification": self.qualification,
+            "is_instructor": self.is_instructor,
+        }
     class Meta:
         db_table = "instructor_profile"
     def __str__(self):
