@@ -19,6 +19,6 @@ from yogacenterwebapp import views
 from django.views.generic import TemplateView
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path("", TemplateView.as_view(template_name="/yogacenterwebapp/home.html")),
+    path("", TemplateView.as_view(template_name="yogacenterwebapp/home.html")),
     path('health/', views.health_check, name='health_check'),
 ]

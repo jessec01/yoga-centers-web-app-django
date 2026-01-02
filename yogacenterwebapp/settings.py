@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'phonenumber_field',
+    'yogacenterwebapp',
     'userYC',
     'yogui',
     'instructor',
@@ -106,7 +107,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'yogacenterwebapp.urls'
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
