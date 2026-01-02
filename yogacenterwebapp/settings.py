@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 #crudcomplete/settings.py
+from datetime import timedelta
 from dotenv import load_dotenv
 import os
 
@@ -38,7 +39,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -46,7 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'phonenumber_field',
+    'userYC',
 ]
+#modelo de usuario personalizado
+AUTH_USER_MODEL = 'userYC.UserYogaCenter'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -57,7 +62,6 @@ REST_FRAMEWORK = {
 }
 
 # --- JWT Settings (opcional pero recomendado) ---
-from datetime import timedelta
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),

@@ -1,10 +1,12 @@
 #userYC/models.py
-from django.db.models        import ActrabtUser
-from phonenumber_field           import PhoneField
-# Create your models here.
-class UserYogaCenter(ActrabtUser):
-    phone=PhoneField(blank=True, help_text='Contact phone number')
+#  se immporta el modelo propio de ActrabtUser y se extiende para agregar el campo phone
+#se instala y define el paquete phonenumber_field para manejar numeros telefonicos 
+from django.contrib.auth.models import AbstractUser
+from phonenumber_field.modelfields import PhoneNumberField
+
+class UserYogaCenter(AbstractUser):
+    phone = PhoneNumberField(blank=True, help_text='Contact phone number')
+
     class Meta:
-        proxy = True
         verbose_name = "UserYC"
         verbose_name_plural = "UsersYC"
