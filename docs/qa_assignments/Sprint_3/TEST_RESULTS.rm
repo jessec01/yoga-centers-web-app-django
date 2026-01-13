@@ -1,0 +1,45 @@
+# Resumen de salida de terminal — test_integracion (super_admin)
+
+Comando ejecutado:
+```sh
+docker compose exec web python3 manage.py test super_admin.tests.test_integracion
+```
+
+Secuencia de ejecuciones y resultados relevantes:
+
+1) FALLA (AssertionError: 400 != 201)
+- Mensaje impreso: 
+  Response data: {'confirmation_password': [ErrorDetail(string='This field is required.', code='required')], 'password': {'password': ErrorDetail(string='invalid password', code='invalid')}}
+- Resultado: FAIL (status 400)
+
+2) OK (validación sólo de password)
+- Mensaje impreso:
+  Response data: {'password': {'password': ErrorDetail(string='invalid password', code='invalid')}}
+- Resultado: OK
+
+3) OK (mensaje distinto de contraseña)
+- Mensaje impreso:
+  Response data: {'password': {'password': ErrorDetail(string='śtrong password required', code='invalid')}}
+- Resultado: OK
+
+4) ERROR (TypeError: unhashable type: 'dict')
+- Traceback apunta a: self.client.post(...) en test_integracion.py
+- Resultado: ERROR
+
+5) ERROR (KeyError: 'last_name')
+- Traceback muestra KeyError en super_admin/api/createserializer.py: create -> validated_data['last_name']
+- Resultado: ERROR
+
+6) OK (creación exitosa)
+- Mensaje impreso:
+  Super admin created successfully: {'id': 1, 'username': 'jessec_dev', 'first_name': 'Jessec', 'last_name': 'Zuleta', 'email': 'jessec@example.com', 'phone': '+584121234567', ...}
+- Resultado: OK
+
+7) OK (validación de fuerza de contraseña)
+- Mensaje impreso en varias ejecuciones:
+  Response data: {'password': {'password': ErrorDetail(string='strong password required', code='invalid')}}
+- Resultado: OK (validación fallida por contraseña débil)
+
+Observaciones clave:
+- Casos encontrados: errores de payload (campo requerido faltante), validaciones de contraseña (mensajes variados), excepciones por payload malformado (TypeError) y por acceso directo a keys no garantizadas en el serializer (KeyError), y una ejecución con creación exitosa.
+- Para reproducir: usar el mismo comando indicado; revisar payload enviado (incluir confirmation_password igual a password y cumplir reglas de contraseña) y añadir verificaciones en el serializer para evitar KeyError.
