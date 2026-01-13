@@ -1,3 +1,4 @@
+# super_admin/models.py
 from django.db import models
 from userYC.models import UserYogaCenter
 # Create your models here.
