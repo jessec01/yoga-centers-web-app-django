@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'center_administrator',
     'super_admin',
 ]
+PHONENUMBER_DEFAULT_REGION='VE'  # Venezuela
 #modelo de usuario personalizado
 AUTH_USER_MODEL = 'userYC.UserYogaCenter'
 REST_FRAMEWORK = {
