@@ -2,7 +2,7 @@
 
 from django.views.generic.base import TemplateView
 from rest_framework.permissions import AllowAny as allow_any
-from userYC.models import UserYogaCenter
+from super_admin.models import SuperAdminProfile as SuperAdmin
 from rest_framework.generics import CreateAPIView
 from super_admin.api.createserializer import SuperAdminCreateSerializer
 #define la vista del formulario de registro
@@ -12,7 +12,7 @@ class FormRegisterView(TemplateView):
 #define la vista del perfil del super admin
 class ReadFormView(CreateAPIView):
 
-    queryset = UserYogaCenter.objects.all()
+    queryset = SuperAdmin.objects.all()
     serializer_class = SuperAdminCreateSerializer
     permission_classes = [allow_any]  # Permitir acceso sin autenticación
 class SuperAdminSessionView(TemplateView):

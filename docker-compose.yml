@@ -1,0 +1,31 @@
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - mailhog
+    restart: unless-stopped
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8026:8025"   # Interfaz web
+      - "1026:1025"   # Puerto SMTP
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # - docker-entrypoint-initdb.d/init.sql  <-- Puedes borrar esta línea
+    env_file:
+      - .env
+    ports:
+      - "5435:5432"
+    restart: unless-stopped
+volumes:
+  postgres_data:

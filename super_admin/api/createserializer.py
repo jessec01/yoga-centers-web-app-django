@@ -1,6 +1,6 @@
 #super_admin/api/createserializer.py
 import re
-from super_admin.service.group_data import GroupDataService
+from userYC.service.group_data import GroupDataService
 from super_admin.service.create_transaction import CreateTransactionService as CreateTransaction
 from userYC.models import UserYogaCenter    
 from rest_framework import serializers

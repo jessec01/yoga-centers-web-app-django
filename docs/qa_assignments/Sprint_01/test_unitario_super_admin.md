@@ -97,15 +97,3 @@ docker compose exec web python3 manage.py migrate --noinput
 
 5. Si usas factories (Factory Boy), verificar que la factory de `UserYogaCenter` esté siendo llamada desde la factory del `SuperAdmin`.
 
-## Secciones que debes redactar
-
-- **Objetivo del test:** (tu texto)
-- **Pasos detallados para reproducir:** (tu texto)
-- **Salida real completa del test:** (ya incluida arriba)
-- **Causa raíz identificada:** (tu texto tras investigar)
-- **Solución propuesta / cambios sugeridos en el código o tests:** (tu texto)
-- **Notas adicionales / referencias:** (tu texto)
-
----
-
-¿Quieres que busque en el repositorio el test y las factories/fixtures relacionados y proponga un parche para corregir la preparación de datos? Puedo aplicarlo y volver a ejecutar el test si me das permiso.

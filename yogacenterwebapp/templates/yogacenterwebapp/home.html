@@ -1,11 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main pagine</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Yoga Centers — Plataforma de registros</title>
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <h1>Welcome to the Yoga Center Web App!</h1>
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">
+            <a href="/">YogaCenters</a>
+        </div>
+        <nav class="nav">
+            <!-- Formularios simples sin JavaScript: modificar `action` según backend -->
+            <form class="nav-form" action="/login/" method="get">
+                <button class="btn btn-ghost" type="submit">Iniciar sesión</button>
+            </form>
+            <form class="nav-form" action="/register/" method="get">
+                <button class="btn btn-primary" type="submit">Registrar empresa</button>
+            </form>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                <h1>Atrae alumnos a tu centro de yoga</h1>
+                <p class="lead">Registra tu empresa, publica clases y permite que los usuarios te encuentren fácilmente.</p>
+                <div class="hero-ctas">
+                    <!-- Botones sin JS: formularios GET que redirigen. Cambiar `action` a las rutas reales. -->
+                    <form action="/register/" method="get">
+                        <button class="btn btn-primary" type="submit">Registrar mi centro</button>
+                    </form>
+                    <form action="/login/" method="get">
+                        <button class="btn btn-ghost" type="submit">Tengo cuenta</button>
+                    </form>
+                </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <!-- Imagen o ilustración SVG: reemplazar por una imagen real en producción -->
+                <div class="illustration">🧘‍♀️</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Lo esencial</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Ficha de centro</h3>
+                    <p>Describe tu espacio, horarios, precios y fotos; los usuarios te encontrarán con filtros.</p>
+                </article>
+                <article class="card">
+                    <h3>Gestión de clases</h3>
+                    <p>Publica clases y horarios; los interesados podrán reservar o contactar.</p>
+                </article>
+                <article class="card">
+                    <h3>Opiniones y confianza</h3>
+                    <p>Recibe valoraciones y construye reputación entre la comunidad local.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Cómo empezar</h2>
+            <ol class="steps">
+                <li>
+                    <strong>Registrarte:</strong> crea una cuenta y completa la información del centro.
+                </li>
+                <li>
+                    <strong>Publicar clases:</strong> añade horarios y tipos de clases para que los usuarios vean tu oferta.
+                </li>
+                <li>
+                    <strong>Conectar:</strong> recibe reservas y mensajes de estudiantes interesados.
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <div class="container">
+            <blockquote>
+                "Nuestra sala se llenó en semanas tras registrarnos aquí." — Centro ejemplo
+            </blockquote>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div>© {{ current_year|default:2026 }} YogaCenters</div>
+        <div class="links">
+            <a href="/privacy/">Política de privacidad</a>
+            <a href="/terms/">Términos</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Placeholder JS: no es necesario para los botones, pero útil para mejoras. -->
+<script src="{% static 'js/main.js' %}"></script>
+
+<!--
+    NOTAS para desarrolladores:
+    - Los formularios usan method="get" y acciones estáticas (/register/, /login/).
+        Ajustar `action` a las rutas reales del backend si difieren.
+    - No se tocan vistas, URLs ni componentes del backend.
+    - En `static/js/main.js` sugerimos añadir validación adicional, interacción accesible,
+        analytics y mejoras progresivas. Ver el archivo para más comentarios.
+-->
+
 </body>
 </html>

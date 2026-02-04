@@ -17,8 +17,11 @@ Including another URLconf
 from django.urls import path
 from yogacenterwebapp import views
 from django.views.generic import TemplateView
+from django.contrib import admin
+from django.urls import include
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path("", TemplateView.as_view(template_name="yogacenterwebapp/home.html")),
     path('health/', views.health_check, name='health_check'),
+    path('super_admin/', include('super_admin.urls')),
 ]

@@ -10,13 +10,13 @@ class SuperAdminIntegrationTest(APITestCase):
         self.factory = APIRequestFactory('api/readregister/')
         self.view = ReadFormView.as_view()
         self.response = self.client.post('/super_admin/api/readregister/', {
-            "username": "no_upper",
+            "username": "mismatch_test",
   "first_name": "Jessec",
   "last_name": "Zuleta",
-  "email": "noupper@example.com",
-  "phone": "+584163334455",
-  "password": "password*12",
-  "confirmation_password": "password*12"
+  "email": "mismatch@example.com",
+  "phone": "+582617001122",
+  "password": "Valida123!",
+  "confirmation_password": "OtraValida_1!"
             
         }, format='json')
         #assert ReadFormView.objects.count() == 1

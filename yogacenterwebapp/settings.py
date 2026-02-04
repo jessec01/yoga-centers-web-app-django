@@ -33,13 +33,14 @@ load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
-
+STMP_HOST = os.getenv('EMAIL_HOST')
+STMP_PORT = os.getenv('EMAIL_PORT')
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
 INSTALLED_APPS = [
-    #'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -54,7 +55,9 @@ INSTALLED_APPS = [
     'instructor',
     'center_administrator',
     'super_admin',
+    'magiclink',
 ]
+
 PHONENUMBER_DEFAULT_REGION='VE'  # Venezuela
 #modelo de usuario personalizado
 AUTH_USER_MODEL = 'userYC.UserYogaCenter'
@@ -68,7 +71,7 @@ REST_FRAMEWORK = {
 }
 
 # --- JWT Settings (opcional pero recomendado) ---
-
+LIFETIME_ACCESS_TOKEN = timedelta(seconds=60)  # minutos
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
@@ -141,6 +144,14 @@ DATABASES = {
         'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
+#configuracion smtp para el envio de correos
+
+EMAIL_HOST = STMP_HOST
+EMAIL_PORT = STMP_PORT
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 

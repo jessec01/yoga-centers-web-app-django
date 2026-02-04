@@ -1,3 +1,4 @@
+#yogui/models.py
 from django.db import models
 from userYC.models import UserYogaCenter
 class YoguiProfile(models.Model):

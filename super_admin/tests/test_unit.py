@@ -2,7 +2,6 @@
 from django.test import TestCase
 from userYC.models import UserYogaCenter
 from ..models import SuperAdminProfile
-from django.db import IntegrityError
 from django.core.exceptions import ValidationError    
 # Create your tests here.
 class SuperAdminProfileModelTest(TestCase):
@@ -38,7 +37,7 @@ class SuperAdminProfileModelTest(TestCase):
         self.assertEqual(summary["first_name"], "SuperAdmin")
         self.assertEqual(summary["last_name"], "User")
         self.assertEqual(summary["email"], "test@gmail.com")
-        #self.assertEqual(summary["phone_number"], "1231231234")
+        self.assertEqual(summary["phone_number"], "584141234567)")
         self.assertEqual(summary["is_active"], True)
         self.assertEqual(summary["is_super_admin"], True)
     

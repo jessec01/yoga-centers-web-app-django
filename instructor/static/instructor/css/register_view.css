@@ -1,0 +1,55 @@
+/* register_view.css - diseño "Zen" minimalista para la página de registro
+   Basado en el estilo usado para home.css: variables, espacios, bordes suaves.
+
+   Personalización rápida:
+   - Cambia las variables en :root para ajustar paleta y tipografía.
+   - Para modo oscuro por defecto, añade la clase `dark` al <body> desde servidor
+     o gestiona la preferencia con JS (no incluido aquí).
+*/
+
+:root{
+  --bg: #fbfbf8; /* blanco crema */
+  --text: #13221f; /* texto principal */
+  --muted: #6b7280; /* texto secundario */
+  --accent: #7aa57a; /* verde suave (tema yoga) */
+  --accent-2: #8eb6c8; /* color secundario */
+  --radius: 12px;
+  --max-width: 720px;
+  --font-sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:var(--font-sans);background:var(--bg);color:var(--text)}
+
+.container{max-width:var(--max-width);margin:0 auto;padding:1.25rem}
+
+.form-wrap{padding:2rem 1rem}
+.title{font-size:1.4rem;margin:0 0 1rem 0}
+
+.progressive-form, .form-card{background:transparent}
+
+.field{display:block;margin-bottom:0.9rem}
+.label-text{display:block;font-weight:600;margin-bottom:0.375rem;color:var(--text)}
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="password"]{width:100%;padding:0.75rem;border-radius:10px;border:1px solid #eaeaea;background:transparent}
+.hint{display:block;color:var(--muted);font-size:0.85rem;margin-top:0.25rem}
+
+.show-pass-row{display:flex;align-items:center;gap:0.5rem}
+.show-pass-label{cursor:pointer;color:var(--muted);font-weight:600}
+
+.actions{display:flex;justify-content:flex-end;margin-top:1rem}
+.btn{padding:0.6rem 0.95rem;border-radius:8px;border:1px solid transparent;cursor:pointer;font-weight:700}
+.btn-primary{background:var(--accent);color:white}
+.btn-ghost{background:transparent;color:var(--accent-2)}
+
+/* Responsive - móvil primero */
+@media(min-width:700px){
+  .container{padding:2rem}
+}
+
+/* Comentarios (CSS):
+   - Cambia --accent para orientarlo al color del negocio (tonos tierra/verde/lavanda).
+   - Si deseas modo oscuro, define variables alternativas bajo `.dark` y añádela al <body>.
+   - Para integrar imagen/logo, añade un bloque `.hero` arriba y ajusta margins.
+*/

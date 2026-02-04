@@ -1,19 +1,23 @@
 from django.views.generic.base import TemplateView
-
-from service.main_service import MainService
+from rest_framework.generics import GenericAPIView
+#from service.main_service import MainService
 
 # Create your views here.
+# Instructor Views
+#----------------------------
 class InstructorRegisterView(TemplateView):
-    template_name = "instructor/register_view.html" 
-class InstructorLoginView(TemplateView):
-    template_name = "instructor_session.html"
+    # Usar la plantilla genérica de autenticación (registro + login)
+    template_name = "instructor/auth_form.html"
+class ValidateCodeView(TemplateView):
+    template_name = "instructor/validate_code.html"
 
-class SessionInstructorView(TemplateView):
-    mainservice=MainService()
-    try:
-        queryset =mainservice.get_all_instructors()
-        serializer_class = mainservice.get_serializer()
-        mainservice.validation_credentials(serializer_class)  
-        mainservice.run_authentication()
-    except Exception as e:
-        print (f"Error initializing SessionInstructorView: {e}")
+#login Views
+#----------------------------
+class InstructorLoginView(TemplateView):
+    template_name = "instructor_login.html"
+class ValidateLoginView(GenericAPIView):
+    pass
+ 
+class dasboaardView(TemplateView):
+    template_name = "instructor/dashboard.html"
+

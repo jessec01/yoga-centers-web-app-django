@@ -7,6 +7,8 @@ from django.db import models
 class UserYogaCenter(AbstractUser):
     phone = PhoneNumberField(blank=True, help_text='Contact phone number',region='VE')
     datatime_created = models.DateTimeField(auto_now_add=True)
+    REQUIRED_FIELDS = ['email']
+
 
     class Meta:
         db_table = "user_yoga_center"

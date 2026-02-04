@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Verificar código</title>
+  <link rel="stylesheet" href="{% static 'instructor/css/register_view.css' %}">
+</head>
+<body>
+  <main class="container form-wrap">
+    <h1 class="title">Código de verificación enviado</h1>
+
+    <p class="lead">Hemos enviado un código de 6 dígitos a tu correo. Introduce el código para continuar.</p>
+
+    <!-- Formulario para ingresar código de 6 dígitos -->
+    <form id="validate-form" action="/instructor/api/verify-code/" method="post">
+      {% csrf_token %}
+
+      <label class="field">
+        <span class="label-text">Código (6 dígitos)</span>
+        <input id="code-input" name="code" type="text" inputmode="numeric" pattern="^\d{6}$" maxlength="6" placeholder="123456" autocomplete="one-time-code" required autofocus>
+        <small class="hint">Revisa tu bandeja de entrada (y carpeta de spam).</small>
+      </label>
+
+      <div class="field">
+        <span class="label-text">Tiempo restante</span>
+        <div id="countdown" aria-live="polite">00:60</div>
+      </div>
+
+      <div class="field">
+        <button id="resend-btn" type="button" class="btn btn-ghost" disabled>Reenviar código</button>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary">Verificar</button>
+      </div>
+    </form>
+
+    <!-- Comentarios frontend (minimalista):
+         - Mostrar feedback inline si el código es inválido.
+         - Añadir contador visual claro y accesible (ya incluido).
+         - Permitir reenvío con control de rate-limit (backend) y mostrar confirmación.
+         - Proteger contra reintentos: bloquear UI mientras el backend valida.
+         - Añadir opción para cambiar correo si no lo recibes.
+
+       Comentarios sobre token/envío (backend):
+         - El backend debe enviar un código de 6 dígitos por correo y almacenarlo temporalmente
+           (o generar un token asociado) con TTL (ej. 5-15 minutos).
+         - Al recibir el código en este endpoint, validar y marcar token como usado.
+         - Implementar límite de intentos y registro de eventos (prevención de abuso).
+    -->
+
+    <!-- Scripts: importar tema compartido y el script de esta vista -->
+    <script src="{% static 'yogacenterwebapp/js/theme.js' %}"></script>
+    <script src="{% static 'instructor/js/validate_code.js' %}"></script>
+  </main>
+</body>
+</html>

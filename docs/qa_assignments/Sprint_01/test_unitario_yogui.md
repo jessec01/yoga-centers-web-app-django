@@ -3,6 +3,68 @@
 ## Resumen
 
 Este archivo documenta la ejecución del test unitario para la app `yogui`. El contenido principal lo redactarás tú; aquí se incluye un resumen automático de la falla y secciones para completar.
+## casos de prueba
+abrir:
+ ``` python manage.py shell ```
+primero importar las librería
+
+ ``` from tu_app.models import 
+#se debe importar los modelos del usuario, yogui e instructor
+from django.db import IntegrityError
+#esta para validacion ``` 
+
+
+prueba número 1
+ ```
+# Definimos el usuario en una variable 'u'
+u = YogaCenterUser.objects.create_user(
+    username="prueba_manual",
+    password="123",
+    email="test@yoga.com",
+    first_name="Juan",
+    phone="+584121234567"
+)
+
+# Validamos que se creó:
+print(u.id)
+# Debería salir un número (ej: 1)
+
+print(u.phone)
+# Debería salir: +584121234567 ```
+
+prueba número 2
+
+ ```
+# Creamos el Yogi vinculándolo a la variable 'u' que creamos arriba
+y = Yogi.objects.create(
+    user=u, 
+    urlprofile="foto_yogi.jpg"
+)
+
+# Validamos que existe:
+print(y.id)
+
+print(y.user.first_name)
+# Debería responder: "Juan" ```
+
+
+
+# Validamos:
+print(i.rating)
+# Debería salir: 4.5 ```
+
+prueba número 4 
+ ```
+# Intentamos asignar el rol al usuario ID 9999 (que no existe)
+try:
+    Yogi.objects.create(user_id=9999, urlprofile="fantasma.jpg")
+except IntegrityError:
+    print("¡PRUEBA EXITOSA! La base de datos impidió crear un rol huérfano.")
+except Exception as e:
+    print(f"Ocurrió otro error: {e}") ```
+## Consideraciones 
+
+Se desarrollo directamente un test unitario para validar el comportamiento del modelo yogui.
 
 ## Salida de la prueba (resumen automático)
 

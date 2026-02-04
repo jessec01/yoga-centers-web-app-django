@@ -1,7 +1,7 @@
 #instructor/tests.py
 from django.test import TestCase
 from userYC.models import UserYogaCenter
-from .models import InstructorProfile, YoguiProfile
+from .models import YoguiProfile
 from django.db import IntegrityError
 # Create your tests here.
 class IntructorProfileModelTest(TestCase):
@@ -13,7 +13,6 @@ class IntructorProfileModelTest(TestCase):
             email="testinstructor@example.com",
             phone="1122334455",
             password="instructorpassword")
-  # checkov:skip=CKV_SECRET_6: ADD REASON
         self.instructor_profile = YoguiProfile.objects.create(
             user=self.user,
             description_personal="Certified yoga instructor",
@@ -35,7 +34,7 @@ class IntructorProfileModelTest(TestCase):
         self.assertEqual(summary["is_instructor"], True)
     def test_validation_integration(self):
         try:
-            InstructorProfile.objects.create(user_id=9999)
+            YoguiProfile.objects.create(user_id=9999)
         except IntegrityError:
             print("¡TEST EXCELLENT! The integrity error was caught as expected.")
         except Exception as e:
