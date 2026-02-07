@@ -24,8 +24,8 @@
   <form id="register-form" action="/instructor/api/register/" method="post" novalidate>
     {% csrf_token %}
     <label class="field">
-      <span class="label-text">Nombre de usuario</span>
-      <input name="username" type="text" autocomplete="username" placeholder="usuario123" required>
+      <span class="label-text">Usuario o correo</span>
+      <input name="username" type="text" autocomplete="username" placeholder="usuario123 o tu@correo.com" required>
     </label>
 
     <label class="field">
@@ -36,6 +36,11 @@
     <label class="field">
       <span class="label-text">Apellido</span>
       <input name="last_name" type="text" autocomplete="family-name" placeholder="Pérez" required>
+    </label>
+
+    <label class="field">
+      <span class="label-text">Correo electrónico</span>
+      <input name="email" type="email" autocomplete="email" placeholder="tu@correo.com" required>
     </label>
 
     <label class="field">

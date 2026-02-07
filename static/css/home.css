@@ -32,6 +32,10 @@ html,body{height:100%;margin:0;font-family:var(--font-sans);background:var(--bg)
 .btn-primary{background:var(--accent);color:white}
 .btn-ghost{background:transparent;color:var(--accent-2);border-color:transparent}
 
+/* Asegurar que botones con data-href muestren cursor y foco accesible */
+button[data-href]{cursor:pointer}
+button[data-href]:focus{outline:2px solid var(--accent);outline-offset:2px}
+
 /* Hero */
 .hero{padding:3rem 0}
 .hero-inner{display:flex;gap:2rem;align-items:center}

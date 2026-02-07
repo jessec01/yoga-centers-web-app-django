@@ -4,8 +4,6 @@ from userYC.models import UserYogaCenter
 # Create your models here.
 class SuperAdminProfile(models.Model):
     user = models.OneToOneField(UserYogaCenter, on_delete=models.CASCADE)
-    is_active = models.BooleanField(default=True)
-    is_super_admin = models.BooleanField(default=True)
     def summary_super_admin(self):
         return {
             "user_id": self.user.id,

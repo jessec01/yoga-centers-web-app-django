@@ -1,3 +1,6 @@
 .env
 /venv
 .dockerignore
+AUDIT_ROADMAP.md
+WORKFLOW_PLAN.md
+READMEN_TAREAS.md

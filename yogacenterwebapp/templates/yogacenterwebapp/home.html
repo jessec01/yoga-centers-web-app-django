@@ -14,13 +14,9 @@
             <a href="/">YogaCenters</a>
         </div>
         <nav class="nav">
-            <!-- Formularios simples sin JavaScript: modificar `action` según backend -->
-            <form class="nav-form" action="/login/" method="get">
-                <button class="btn btn-ghost" type="submit">Iniciar sesión</button>
-            </form>
-            <form class="nav-form" action="/register/" method="get">
-                <button class="btn btn-primary" type="submit">Registrar empresa</button>
-            </form>
+            <!-- Botones con `data-href` — JS leerá y redirigirá -->
+            <button class="btn btn-ghost" type="button" data-href="/center_administrator/auth/#login">Iniciar sesión</button>
+            <button class="btn btn-primary" type="button" data-href="/center_administrator/auth/#register">Registrar empresa</button>
         </nav>
     </div>
 </header>
@@ -32,13 +28,9 @@
                 <h1>Atrae alumnos a tu centro de yoga</h1>
                 <p class="lead">Registra tu empresa, publica clases y permite que los usuarios te encuentren fácilmente.</p>
                 <div class="hero-ctas">
-                    <!-- Botones sin JS: formularios GET que redirigen. Cambiar `action` a las rutas reales. -->
-                    <form action="/register/" method="get">
-                        <button class="btn btn-primary" type="submit">Registrar mi centro</button>
-                    </form>
-                    <form action="/login/" method="get">
-                        <button class="btn btn-ghost" type="submit">Tengo cuenta</button>
-                    </form>
+                    <!-- Botones con `data-href`; JS centraliza la navegación -->
+                    <button class="btn btn-primary" type="button" data-href="/center_administrator/auth/#register">Registrar mi centro</button>
+                    <button class="btn btn-ghost" type="button" data-href="/center_administrator/auth/#login">Tengo cuenta</button>
                 </div>
             </div>
             <div class="hero-visual" aria-hidden="true">
@@ -104,8 +96,8 @@
     </div>
 </footer>
 
-<!-- Placeholder JS: no es necesario para los botones, pero útil para mejoras. -->
-<script src="{% static 'js/main.js' %}"></script>
+<!-- Cargar el main específico de la app que contiene la delegación de `data-href`. -->
+<script src="{% static 'yogacenterwebapp/js/main.js' %}"></script>
 
 <!--
     NOTAS para desarrolladores:

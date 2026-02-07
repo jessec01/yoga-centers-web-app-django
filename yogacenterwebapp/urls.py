@@ -24,4 +24,5 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="yogacenterwebapp/home.html")),
     path('health/', views.health_check, name='health_check'),
     path('super_admin/', include('super_admin.urls')),
+    path('center_administrator/', include('center_administrator.urls')),
 ]

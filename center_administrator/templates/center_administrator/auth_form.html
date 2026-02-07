@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Autenticación - Instructor</title>
+  <link rel="stylesheet" href="{% static 'instructor/css/register_view.css' %}">
+</head>
+<body>
+
+<main class="container form-wrap">
+  <!-- Estado actual: plantilla combinada para registro e inicio de sesión.
+       - Mantiene diseño minimalista 'Zen' compartido con register_view.css.
+       - La lógica de presentación (mostrar/ocultar formularios, mostrar contraseña,
+         alternar theme) queda en `instructor/js/auth_forms.js` y `yogacenterwebapp/js/theme.js`.
+       - Recomendación futura: separar en componentes, añadir mensajes inline y manejo
+         de errores/estados del servidor (AJAX) para mejor UX.
+  -->
+
+  <h1 class="title">Crear cuenta - Instructor</h1>
+
+  <!-- Formulario de registro (misma estructura que antes) -->
+  <form id="register-form" action="/instructor/api/register/" method="post" novalidate>
+    {% csrf_token %}
+    <label class="field">
+      <span class="label-text">Usuario o correo</span>
+      <input name="username" type="text" autocomplete="username" placeholder="usuario123 o tu@correo.com" required>
+    </label>
+
+    <label class="field">
+      <span class="label-text">Nombre</span>
+      <input name="first_name" type="text" autocomplete="given-name" placeholder="María" required>
+    </label>
+
+    <label class="field">
+      <span class="label-text">Apellido</span>
+      <input name="last_name" type="text" autocomplete="family-name" placeholder="Pérez" required>
+    </label>
+
+    <label class="field">
+      <span class="label-text">Correo electrónico</span>
+      <input name="email" type="email" autocomplete="email" placeholder="tu@correo.com" required>
+    </label>
+
+    <label class="field">
+      <span class="label-text">Teléfono (con código de país)</span>
+      <input name="phone" type="tel" inputmode="tel" placeholder="+58 412 1234567" pattern="^\+\d{1,3}\s?\d{4,14}$" required>
+      <small class="hint">Ejemplo: +58 412 1234567</small>
+    </label>
+
+    <label class="field">
+      <span class="label-text">Contraseña</span>
+      <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Escribe una contraseña" required>
+    </label>
+
+    <div class="field show-pass-row">
+      <input id="show-password" type="checkbox" aria-controls="password">
+      <label for="show-password" class="show-pass-label">Mostrar contraseña</label>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn btn-primary">Crear cuenta</button>
+    </div>
+  </form>
+
+  <div class="swap-link" style="text-align:center;margin-top:1rem">
+    <small>¿Ya tienes cuenta? <a href="#login" id="to-login">Iniciar sesión</a></small>
+  </div>
+
+  <!-- Login form -->
+  <form id="login-form" action="/instructor/api/login/" method="post" novalidate style="display:none;margin-top:1.5rem;">
+    {% csrf_token %}
+    <h2 class="title" style="margin-top:0">Iniciar sesión</h2>
+
+    <label class="field">
+      <span class="label-text">Nombre de usuario</span>
+      <input name="username" type="text" autocomplete="username" placeholder="usuario123" required>
+    </label>
+
+    <label class="field">
+      <span class="label-text">Contraseña</span>
+      <input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Contraseña" required>
+    </label>
+
+    <div class="field show-pass-row">
+      <input id="show-password-login" type="checkbox" aria-controls="login-password">
+      <label for="show-password-login" class="show-pass-label">Mostrar contraseña</label>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn btn-primary">Entrar</button>
+    </div>
+
+    <div class="swap-link" style="text-align:center;margin-top:1rem">
+      <small>¿No tienes cuenta? <a href="#register" id="to-register">Regístrate</a></small>
+    </div>
+  </form>
+
+  <!-- Comentarios para el futuro:
+       - Separar componentes (inputs, buttons) para reusabilidad.
+       - Añadir mensajes inline y estados (loading, success, error).
+       - Considerar accesibilidad: focus management, labels claros y roles ARIA.
+       - Este template actualmente funciona sin JS como degradado; JS mejora UX.
+  -->
+
+  <script src="{% static 'yogacenterwebapp/js/theme.js' %}"></script>
+  <script src="{% static 'center_administrator/js/auth_form.js' %}"></script>
+</main>
+
+</body>
+</html>

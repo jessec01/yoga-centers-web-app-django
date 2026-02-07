@@ -4,7 +4,6 @@ from django.views.generic.base import TemplateView
 from rest_framework.permissions import AllowAny as allow_any
 from super_admin.models import SuperAdminProfile as SuperAdmin
 from rest_framework.generics import CreateAPIView
-from super_admin.api.createserializer import SuperAdminCreateSerializer
 #define la vista del formulario de registro
 class FormRegisterView(TemplateView):
     template_name = "super_admin/register_view.html"
@@ -12,8 +11,8 @@ class FormRegisterView(TemplateView):
 #define la vista del perfil del super admin
 class ReadFormView(CreateAPIView):
 
-    queryset = SuperAdmin.objects.all()
-    serializer_class = SuperAdminCreateSerializer
+    #queryset = SuperAdmin.objects.all()
+   # serializer_class = SuperAdminCreateSerializer
     permission_classes = [allow_any]  # Permitir acceso sin autenticación
 class SuperAdminSessionView(TemplateView):
     template_name = "super_admin_session.html"
